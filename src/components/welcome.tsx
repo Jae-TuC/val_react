@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 import { HeartIcon } from "lucide-react";
 import BlurText from "./blurtext";
 import AnimatedContent from "./animatedcontent";
-import ShinyText from "./shinnytext";
 import SplitText from "./splittext";
+import ShinyText from "./shinnytext";
 
 interface CountUpProps {
   to: number;
@@ -165,7 +165,7 @@ export default function CountUp({
                 className="text-4xl md:text-6xl text-white py-1.5 px-3 md:py-2 md:px-4 rounded-xl bg-[#d60000] mb-0"
               />
             </h1>
-            <div className="mt-10">
+            <div className="mt-10 flex flex-col items-center gap-4">
               <AnimatedContent
                 blur={true}
                 duration={1000}
@@ -178,6 +178,12 @@ export default function CountUp({
                   <HeartIcon className="w-20 h-20 stroke-[#c00000] fill-[#c00000] animate-pulse" />
                 </h1>
               </AnimatedContent>
+              <ShinyText
+                text="Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest."
+                speed={4.5}
+                className="text-center text-[1rem] font-semibold w-3/5"
+              />
+              {/* <p className="text-center text-[1rem] text-[#d60000]/90 font-semibold w-3/5"></p> */}
             </div>
           </div>
         </>
