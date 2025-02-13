@@ -4,7 +4,7 @@ import ReactConfetti from "react-confetti";
 import { clsx } from "clsx";
 
 import { useParams } from "react-router-dom";
-import { HeartIcon, MusicIcon } from "lucide-react";
+import { HeartIcon, MusicIcon, Pause, Play } from "lucide-react";
 import BlurText from "./blurtext";
 import AnimatedContent from "./animatedcontent";
 import SplitText from "./splittext";
@@ -97,6 +97,21 @@ export default function CountUp({
         .then(() => {
           setIsPlaying(true);
           setIsMuted(false);
+        })
+        .catch((error) => {
+          console.warn("Audio playback failed", error);
+        });
+    }
+  };
+
+  const handleAudioPause = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = true;
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(false);
+          setIsMuted(true);
         })
         .catch((error) => {
           console.warn("Audio playback failed", error);
@@ -274,10 +289,17 @@ export default function CountUp({
         {!isPlaying && (
           <button
             onClick={handleAudioPlay}
-            className="p-6 rounded-full bg-[#d60000] gap-2"
+            className="p-4 md:p-6 rounded-full bg-[#d60000] gap-2"
           >
-            <MusicIcon className="w-10 h-10" />
-            {isMuted ? "Play" : "Pause"}
+            <Play className="w-10 h-10" />
+          </button>
+        )}
+        {isPlaying && (
+          <button
+            onClick={handleAudioPause}
+            className="p-4 md:p-6 rounded-full bg-[#d60000] gap-2"
+          >
+            <Pause className="w-10 h-10" />
           </button>
         )}
       </div>
