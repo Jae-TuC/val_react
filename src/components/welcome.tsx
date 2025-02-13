@@ -154,7 +154,7 @@ export default function CountUp({
             className="absolute top-0 left-0 w-full h-full"
           />
           <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="inline-flex items-center gap-2 text-4xl md:text-6xl font-bold text-[#d60000]">
+            <h1 className="inline-flex flex-col md:flex-row items-center gap-2 text-4xl md:text-6xl font-bold text-[#d60000]">
               Happy Valentine's{" "}
               <BlurText
                 text="Day"
@@ -180,8 +180,8 @@ export default function CountUp({
               </AnimatedContent>
               <ShinyText
                 text="Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest."
-                speed={4.5}
-                className="text-center text-[1rem] font-semibold w-3/5"
+                speed={4}
+                className="text-center text-[1rem] font-semibold px-2 leading-6 w-4/5 md:px-4 md:leading-7 md:w-3/5"
               />
               {/* <p className="text-center text-[1rem] text-[#d60000]/90 font-semibold w-3/5"></p> */}
             </div>
