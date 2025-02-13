@@ -9,6 +9,12 @@ import BlurText from "./blurtext";
 import AnimatedContent from "./animatedcontent";
 import SplitText from "./splittext";
 import ShinyText from "./shinnytext";
+import { data } from "../lib/dummyData";
+import Autoplay from "embla-carousel-autoplay";
+
+import happyValentine from "../assets/music/track1.wav";
+
+import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
 
 interface CountUpProps {
   to: number;
@@ -35,7 +41,9 @@ export default function CountUp({
   onStart,
   onEnd,
 }: CountUpProps) {
-  const [showConfetti, setShowConfetti] = useState(false);
+  // const [person, setPerson] = useState<(typeof data)[0] | undefined>();
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const [showConfetti, setShowConfetti] = useState(true);
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
 
@@ -45,6 +53,21 @@ export default function CountUp({
     const actualName = name?.split("@").join(" ");
 
     return actualName;
+  };
+
+  const getWriteUp = () => {
+    const actualWriteUp = data.find((person) => person.name === name);
+
+    if (actualWriteUp === undefined) {
+      return "Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest.";
+    }
+    return actualWriteUp?.writeUp;
+  };
+
+  const getImages = () => {
+    const actualImages = data.find((person) => person.name === name);
+
+    return actualImages?.images;
   };
 
   // Calculate damping and stiffness based on duration
@@ -81,7 +104,7 @@ export default function CountUp({
           onEnd();
         }
         if (to === 100) {
-          setShowConfetti(true);
+          setShowConfetti(false);
         }
       }, delay * 1000 + duration * 1000 + 2200);
 
@@ -132,7 +155,7 @@ export default function CountUp({
 
   return (
     <div className="relative w-full h-full">
-      {!showConfetti && (
+      {showConfetti && (
         <div className="flex flex-col items-center justify-center h-screen">
           <span
             className={clsx(
@@ -146,14 +169,39 @@ export default function CountUp({
         </div>
       )}
 
-      {showConfetti && (
+      {!showConfetti && (
         <>
           <ReactConfetti
             width={1000}
             height={1000}
             className="absolute top-0 left-0 w-full h-full"
           />
-          <div className="flex flex-col items-center justify-center h-screen">
+          <div className="flex flex-col items-center justify-center h-screen pt-0">
+            {getImages === undefined && <></>}
+            {/* @ts-ignore */}
+            {getImages() !== undefined && getImages()?.length > 0 ? (
+              <div className="w-[300px] md:w-[400px] h-[300px] md:h-[400px]">
+                <Slideshow
+                  opts={{ loop: true }}
+                  plugins={[plugin.current]}
+                  className="w-[300px] md:w-[400px] h-[300px] md:h-[400px]"
+                >
+                  <SlideshowContent>
+                    {getImages()?.map((image, index) => (
+                      <SlideshowItem key={index} className="rounded-md">
+                        <img
+                          src={image}
+                          alt="Image"
+                          className="w-full h-full object-cover"
+                        />
+                      </SlideshowItem>
+                    ))}
+                  </SlideshowContent>
+                </Slideshow>
+              </div>
+            ) : (
+              <></>
+            )}
             <h1 className="inline-flex flex-col md:flex-row items-center gap-2 text-4xl md:text-6xl font-bold text-[#d60000]">
               Happy Valentine's{" "}
               <BlurText
@@ -179,13 +227,13 @@ export default function CountUp({
                 </h1>
               </AnimatedContent>
               <ShinyText
-                text="Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest."
+                text={String(getWriteUp())}
                 speed={4}
                 className="text-center text-[1rem] font-semibold px-2 leading-6 w-4/5 md:px-4 md:leading-7 md:w-3/5"
               />
-              {/* <p className="text-center text-[1rem] text-[#d60000]/90 font-semibold w-3/5"></p> */}
             </div>
           </div>
+          {/* <audio src={happyValentine} autoPlay loop /> */}
         </>
       )}
     </div>

@@ -1,9 +1,6 @@
-import { useState } from "react";
-import ReactConfetti from "react-confetti";
 import Welcome from "./components/welcome";
 
 const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   //   console.log(isLoaded);
 
   return (
