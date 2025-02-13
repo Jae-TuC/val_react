@@ -173,9 +173,9 @@ export default function CountUp({
                 initialOpacity={0}
               >
                 {/* Anything placed inside this container will be fade into view */}
-                <h1 className="inline-flex items-center text-4xl md:text-5xl uppercase font-semibold tracking-wider gap-3">
+                <h1 className="inline-flex items-center text-4xl md:text-5xl uppercase font-semibold tracking-wider">
                   <SplitText text={String(getName())} />
-                  <HeartIcon className="w-14 h-14 stroke-[#c00000] fill-[#c00000] animated-pulse" />
+                  <HeartIcon className="w-20 h-20 stroke-[#c00000] fill-[#c00000] animate-pulse" />
                 </h1>
               </AnimatedContent>
             </div>
