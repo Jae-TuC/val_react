@@ -4,7 +4,7 @@ import ReactConfetti from "react-confetti";
 import { clsx } from "clsx";
 
 import { useParams } from "react-router-dom";
-import { HeartIcon } from "lucide-react";
+import { HeartIcon, MusicIcon } from "lucide-react";
 import BlurText from "./blurtext";
 import AnimatedContent from "./animatedcontent";
 import SplitText from "./splittext";
@@ -42,9 +42,12 @@ export default function CountUp({
   onEnd,
 }: CountUpProps) {
   // const [person, setPerson] = useState<(typeof data)[0] | undefined>();
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const [showConfetti, setShowConfetti] = useState(true);
   const ref = useRef<HTMLSpanElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
 
   // Get the name from the URL
@@ -68,6 +71,30 @@ export default function CountUp({
     const actualImages = data.find((person) => person.name === name);
 
     return actualImages?.images;
+  };
+
+  useEffect(() => {
+    // Attempt to autoplay the audio when the component mounts
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.warn("Autoplay failed: User interaction required", error);
+      });
+    }
+  }, []);
+
+  const handleAudioPlay = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = false;
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          setIsMuted(false);
+        })
+        .catch((error) => {
+          console.warn("Audio playback failed", error);
+        });
+    }
   };
 
   // Calculate damping and stiffness based on duration
@@ -233,9 +260,20 @@ export default function CountUp({
               />
             </div>
           </div>
-          {/* <audio src={happyValentine} autoPlay loop /> */}
         </>
       )}
+      <div className="absolute bottom-20 right-20 flex items-center gap-2">
+        <audio ref={audioRef} src={happyValentine} autoPlay loop />
+        {!isPlaying && (
+          <button
+            onClick={handleAudioPlay}
+            className="p-6 rounded-full bg-[#d60000] gap-2"
+          >
+            <MusicIcon className="w-10 h-10" />
+            {isMuted ? "Play" : "Pause"}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
