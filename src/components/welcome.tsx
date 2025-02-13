@@ -12,7 +12,7 @@ import ShinyText from "./shinnytext";
 import { data } from "../lib/dummyData";
 import Autoplay from "embla-carousel-autoplay";
 
-import happyValentine from "../assets/music/track1.wav";
+import happyValentine from "../assets/music/track3.wav";
 
 import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
 
@@ -72,6 +72,13 @@ export default function CountUp({
 
     return actualImages?.images;
   };
+
+  const getAudio = () => {
+    const actualAudio = data.find((person) => person.name === name);
+
+    return actualAudio?.music;
+  };
+  console.log("getAudio()", getAudio());
 
   useEffect(() => {
     // Attempt to autoplay the audio when the component mounts
@@ -263,7 +270,7 @@ export default function CountUp({
         </>
       )}
       <div className="absolute bottom-20 right-20 flex items-center gap-2">
-        <audio ref={audioRef} src={happyValentine} autoPlay loop />
+        <audio ref={audioRef} src={getAudio()} autoPlay loop />
         {!isPlaying && (
           <button
             onClick={handleAudioPlay}
