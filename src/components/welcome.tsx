@@ -4,15 +4,13 @@ import ReactConfetti from "react-confetti";
 import { clsx } from "clsx";
 
 import { useParams } from "react-router-dom";
-import { HeartIcon, MusicIcon, Pause, Play } from "lucide-react";
+import { HeartIcon, Pause, Play } from "lucide-react";
 import BlurText from "./blurtext";
 import AnimatedContent from "./animatedcontent";
 import SplitText from "./splittext";
 import ShinyText from "./shinnytext";
 import { data } from "../lib/dummyData";
 import Autoplay from "embla-carousel-autoplay";
-
-import happyValentine from "../assets/music/track3.wav";
 
 import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
 
@@ -52,14 +50,17 @@ export default function CountUp({
 
   // Get the name from the URL
   const { name } = useParams();
-  const getName = () => {
-    const actualName = name?.split("@").join(" ");
+  const personName = name?.split("@").join("").toLowerCase();
+  // @ts-ignore
+  const actualName = personName?.toLowerCase().includes(name?.toLowerCase());
+  console.log(actualName);
+  // const getName = () => {
+  //   const actualName = name?.split("@").join("");
 
-    return actualName;
-  };
-
+  //   return actualName?.toLowerCase();
+  // };
   const getWriteUp = () => {
-    const actualWriteUp = data.find((person) => person.name === name);
+    const actualWriteUp = data.find((person) => person.name === personName);
 
     if (actualWriteUp === undefined) {
       return "Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest.";
@@ -68,17 +69,19 @@ export default function CountUp({
   };
 
   const getImages = () => {
-    const actualImages = data.find((person) => person.name === name);
-
+    const actualImages = data.find(
+      (person) => person.name === name?.toLowerCase()
+    );
     return actualImages?.images;
   };
+
+  console.log(getImages());
 
   const getAudio = () => {
     const actualAudio = data.find((person) => person.name === name);
 
     return actualAudio?.music;
   };
-  console.log("getAudio()", getAudio());
 
   useEffect(() => {
     // Attempt to autoplay the audio when the component mounts
@@ -229,7 +232,7 @@ export default function CountUp({
             {getImages === undefined && <></>}
             {/* @ts-ignore */}
             {getImages() !== undefined && getImages()?.length > 0 ? (
-              <div className="w-[300px] md:w-[400px] h-[300px] md:h-[400px]">
+              <div className="w-[300px] md:w-[400px] h-[300px] md:h-[400px] mb-6">
                 <Slideshow
                   opts={{ loop: true }}
                   plugins={[plugin.current]}
@@ -241,7 +244,7 @@ export default function CountUp({
                         <img
                           src={image}
                           alt="Image"
-                          className="w-full h-full object-cover"
+                          className=" w-[400px] h-[300px] md:h-[400px] object-cover"
                         />
                       </SlideshowItem>
                     ))}
@@ -271,7 +274,7 @@ export default function CountUp({
               >
                 {/* Anything placed inside this container will be fade into view */}
                 <h1 className="inline-flex items-center text-4xl md:text-5xl uppercase font-semibold tracking-wider">
-                  <SplitText text={String(getName())} />
+                  <SplitText text={personName} />
                   <HeartIcon className="w-20 h-20 stroke-[#c00000] fill-[#c00000] animate-pulse" />
                 </h1>
               </AnimatedContent>
@@ -284,12 +287,12 @@ export default function CountUp({
           </div>
         </>
       )}
-      <div className="absolute bottom-20 right-20 flex items-center gap-2">
+      <div className="absolute bottom-[3.8rem] md:bottom-20 right-4 md:right-20 flex items-center gap-2">
         <audio ref={audioRef} src={getAudio()} autoPlay loop />
         {!isPlaying && (
           <button
             onClick={handleAudioPlay}
-            className="p-4 md:p-6 rounded-full bg-[#d60000] gap-2"
+            className="p-[.8rem] md:p-6 rounded-full bg-[#d60000] gap-2"
           >
             <Play className="w-10 h-10" />
           </button>
@@ -297,7 +300,7 @@ export default function CountUp({
         {isPlaying && (
           <button
             onClick={handleAudioPause}
-            className="p-4 md:p-6 rounded-full bg-[#d60000] gap-2"
+            className="p-[.8rem] md:p-6 rounded-full bg-[#d60000] gap-2"
           >
             <Pause className="w-10 h-10" />
           </button>
