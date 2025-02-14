@@ -11,6 +11,7 @@ import SplitText from "./splittext";
 import ShinyText from "./shinnytext";
 import { data } from "../lib/dummyData";
 import Autoplay from "embla-carousel-autoplay";
+import happyValentine3 from "../assets/music/track2.wav";
 
 import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
 
@@ -40,7 +41,6 @@ export default function CountUp({
   onEnd,
 }: CountUpProps) {
   // const [person, setPerson] = useState<(typeof data)[0] | undefined>();
-  const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const [showConfetti, setShowConfetti] = useState(true);
@@ -60,7 +60,7 @@ export default function CountUp({
   //   return actualName?.toLowerCase();
   // };
   const getWriteUp = () => {
-    const actualWriteUp = data.find((person) => person.name === personName);
+    const actualWriteUp = data.find((person) => person.name === name);
 
     if (actualWriteUp === undefined) {
       return "Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest.";
@@ -99,7 +99,6 @@ export default function CountUp({
         .play()
         .then(() => {
           setIsPlaying(true);
-          setIsMuted(false);
         })
         .catch((error) => {
           console.warn("Audio playback failed", error);
@@ -114,7 +113,6 @@ export default function CountUp({
         .play()
         .then(() => {
           setIsPlaying(false);
-          setIsMuted(true);
         })
         .catch((error) => {
           console.warn("Audio playback failed", error);
@@ -288,7 +286,12 @@ export default function CountUp({
         </>
       )}
       <div className="absolute bottom-[3.8rem] md:bottom-20 right-4 md:right-20 flex items-center gap-2">
-        <audio ref={audioRef} src={getAudio()} autoPlay loop />
+        <audio
+          ref={audioRef}
+          src={getAudio() ? getAudio() : happyValentine3}
+          autoPlay
+          loop
+        />
         {!isPlaying && (
           <button
             onClick={handleAudioPlay}
