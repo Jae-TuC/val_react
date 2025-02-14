@@ -1,13 +1,9 @@
-import happyValentine1 from "../assets/music/track3.wav";
-import happyValentine2 from "../assets/music/track1.wav";
-import happyValentine3 from "../assets/music/track2.wav";
-
-// images
-// Silver
-import silver1 from "../assets/images/silver1.jpg";
-import silver2 from "../assets/images/silver2.jpg";
-import silver3 from "../assets/images/silver3.jpg";
-import silver4 from "../assets/images/silver4.jpg";
+export const happyValentine1 =
+  "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiB0gPl3caiuxJ9V4laTkCiByNXUeOzQY2c5tgF";
+export const happyValentine2 =
+  "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBcYn19DzBV7otf2RrLNqDJApISsegcZkQdzYP";
+export const happyValentine3 =
+  "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBqMHy6fKGZg5F4IQREBfhT2be8yvS9srwp317";
 
 export const data = [
   {
@@ -15,7 +11,13 @@ export const data = [
     writeUp:
       "Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest.",
     music: happyValentine1,
-    images: [silver1, silver2, silver3, silver4],
+    images: [
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBEdFDIveMxPeiGT5cJ0wHz4K3o8AgOdUXslb1",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBvmQGpR4DaARE4i15QqKVZOJg0CGjPrf9MBH7",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBlRf3PmnFaSX2ACWZhJvDjL60p8OHktdzBMg7",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBCghtCavC0eKSTDUW7aocpQjqFZV8AryOtLhH",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBIFmnX7lwX3qtEVa7PdZFDuf6KOiW0cMAoj8g",
+    ],
   },
   {
     name: "@emeka",
@@ -72,7 +74,10 @@ export const data = [
     writeUp:
       "Happy Valentine’s Day, gorgeous! 💖 You light up every room—wishing you a day as stunning as you are.",
     music: happyValentine2,
-    images: [],
+    images: [
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBd5bjkR3vE30qtug9sd87Tr4UKZfNnlmpoSOb",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBqGEpNUKGZg5F4IQREBfhT2be8yvS9srwp317",
+    ],
   },
   {
     name: "@princess",
@@ -124,6 +129,17 @@ export const data = [
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBcBclwZzBV7otf2RrLNqDJApISsegcZkQdzYP",
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBK6kbmPjwQIithFEB45k92mSjTvunY30esz8P",
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBNE8jAZOX9LYnrB63U41lmSIgEPfAKtT0QbdM",
+    ],
+  },
+  {
+    name: "@precious",
+    writeUp:
+      "Happy Valentine’s Day... Still thinking about you. 😉🔥 Hope your day is as unforgettable as you.",
+    music: happyValentine1,
+    images: [
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBriVSzSVsOVLnwxJQj20s3T6MlrKXqfN9C7yS",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBpE3QhQoxgUfob9Ldtcq6YWiDSjsJX8zyHGaC",
+      "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBnnttzlTOhQSz0WpMRLg9BK8iqZdr5mYlAev7",
     ],
   },
 ];

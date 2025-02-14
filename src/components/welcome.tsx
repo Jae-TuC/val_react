@@ -11,7 +11,7 @@ import SplitText from "./splittext";
 import ShinyText from "./shinnytext";
 import { data } from "../lib/dummyData";
 import Autoplay from "embla-carousel-autoplay";
-import happyValentine3 from "../assets/music/track2.wav";
+import { happyValentine3 } from "../lib/dummyData";
 
 import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
 import ImageLoader from "./imageloader";
