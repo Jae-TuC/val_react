@@ -34,14 +34,13 @@ export default function CountUp({
   from = 0,
   direction = "up",
   delay = 0,
-  duration = 2, // Duration of the animation in seconds
+  duration = 2,
   className = "",
   startWhen = true,
   separator = "",
   onStart,
   onEnd,
 }: CountUpProps) {
-  // const [person, setPerson] = useState<(typeof data)[0] | undefined>();
   const [isPlaying, setIsPlaying] = useState(false);
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const [showConfetti, setShowConfetti] = useState(true);
@@ -49,14 +48,11 @@ export default function CountUp({
   const audioRef = useRef<HTMLAudioElement>(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
 
-  // Get the name from the URL
   const { name } = useParams();
   const personName = name?.split("@").join("").toLowerCase();
-  // @ts-ignore
-  const actualName = personName?.toLowerCase().includes(name?.toLowerCase());
 
   const getWriteUp = () => {
-    const actualWriteUp = data.find((person) => person.name === name);
+    const actualWriteUp = data.find((person) => person.name === personName);
 
     if (actualWriteUp === undefined) {
       return "Love is not possession; it is freedom. It thrives in kindness, patience, and understanding. In the smallest moments, love speaks the loudest.";
@@ -71,22 +67,10 @@ export default function CountUp({
     return actualImages?.images;
   };
 
-  console.log(getImages());
-
   const getAudio = () => {
     const actualAudio = data.find((person) => person.name === name);
-
     return actualAudio?.music;
   };
-
-  useEffect(() => {
-    // Attempt to autoplay the audio when the component mounts
-    if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.warn("Autoplay failed: User interaction required", error);
-      });
-    }
-  }, []);
 
   const handleAudioPlay = () => {
     if (audioRef.current) {

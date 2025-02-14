@@ -172,7 +172,7 @@ const SlideshowContent = React.forwardRef<
     </div>
   );
 });
-SlideshowContent.displayName = "CarouselContent";
+SlideshowContent.displayName = "SlideshowContent";
 
 const SlideshowItem = React.forwardRef<
   HTMLDivElement,
