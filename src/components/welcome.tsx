@@ -14,6 +14,7 @@ import Autoplay from "embla-carousel-autoplay";
 import happyValentine3 from "../assets/music/track2.wav";
 
 import Slideshow, { SlideshowContent, SlideshowItem } from "./slideshows";
+import ImageLoader from "./imageloader";
 
 interface CountUpProps {
   to: number;
@@ -53,12 +54,7 @@ export default function CountUp({
   const personName = name?.split("@").join("").toLowerCase();
   // @ts-ignore
   const actualName = personName?.toLowerCase().includes(name?.toLowerCase());
-  console.log(actualName);
-  // const getName = () => {
-  //   const actualName = name?.split("@").join("");
 
-  //   return actualName?.toLowerCase();
-  // };
   const getWriteUp = () => {
     const actualWriteUp = data.find((person) => person.name === name);
 
@@ -237,6 +233,7 @@ export default function CountUp({
                   className="w-[300px] md:w-[400px] h-[300px] md:h-[400px]"
                 >
                   <SlideshowContent>
+                    {!getImages() && <ImageLoader />}
                     {getImages()?.map((image, index) => (
                       <SlideshowItem key={index} className="rounded-md">
                         <img

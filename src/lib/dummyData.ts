@@ -88,7 +88,7 @@ export const data = [
     name: "@cookie",
     writeUp:
       "Happy Valentine’s Day... Still thinking about you. 😉🔥 Hope your day is as unforgettable as you.",
-    music: happyValentine3,
+    music: happyValentine2,
     images: [
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBiAVleePde4wXNPhV9URBYyiWfuKv520gbpkr",
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBpJNlugoxgUfob9Ldtcq6YWiDSjsJX8zyHGaC",
@@ -109,7 +109,7 @@ export const data = [
     name: "@gold",
     writeUp:
       "Happy Valentine’s Day, sis! 💖 You're strong, beautiful, and always amazing—wishing you all the love today!",
-    music: happyValentine3,
+    music: happyValentine2,
     images: [
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBLdooU6GUSRIzEWmqb67p2xvCGKBVc4Neh0rT",
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBPjyT8wgmojz1IRJMad9Xg37OEcrGkWCT4nhi",
@@ -119,7 +119,7 @@ export const data = [
     name: "@wunmi",
     writeUp:
       "Happy Valentine’s Day... Still thinking about you. 😉🔥 Hope your day is as unforgettable as you.",
-    music: happyValentine3,
+    music: happyValentine1,
     images: [
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBcBclwZzBV7otf2RrLNqDJApISsegcZkQdzYP",
       "https://g2xdnwpr3n.ufs.sh/f/MFD8PXHrHFiBK6kbmPjwQIithFEB45k92mSjTvunY30esz8P",
